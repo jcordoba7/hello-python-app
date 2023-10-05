@@ -31,7 +31,7 @@ WORKDIR /
 COPY app .
 RUN pip3 install Flask
 EXPOSE 5000
-ENV NAME "Tech Beer Team"
+ENV NAME "Best Tech Team"
 CMD [ "python3", "app.py" ]
 ```
 
