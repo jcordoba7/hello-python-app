@@ -18,7 +18,6 @@ spec:
         image: phx.ocir.io/idch4uyl2yza/ce-jcc/hello-py-app:v1
         imagePullPolicy: Always
         ports:
-#        - name: hello-py-app
         - containerPort: 5000
           protocol: TCP
         resources:
