@@ -28,5 +28,5 @@ spec:
           requests:
             memory: 200Mi
             cpu: 500m
-      imagePullSecrets:
-        - name: my-ocirsecret
+      # imagePullSecrets:
+        # - name: my-ocirsecret
