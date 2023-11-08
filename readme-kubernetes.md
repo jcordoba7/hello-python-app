@@ -30,7 +30,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-py-app
-  namespace: test
 spec:
   selector:
     matchLabels:
@@ -55,8 +54,8 @@ spec:
           requests:
             memory: 200Mi
             cpu: 500m
-      imagePullSecrets:
-        - name: my-ocirsecret
+       imagePullSecrets:
+         - name: my-ocirsecret
 ```
 #### 1.6 Create the Deployment object for the helloapp-py
 ```
