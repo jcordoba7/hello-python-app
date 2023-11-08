@@ -29,26 +29,33 @@ kubectl -n ns-test get secrets
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: helloapp-py
+  name: hello-py-app
+  namespace: test
 spec:
-selector:
+  selector:
     matchLabels:
-    app: helloapp-py
-replicas: 3
-template:
+      app: hello-py-app
+  replicas: 2
+  template:
     metadata:
-    labels:
-        app: helloapp-py
+      labels:
+        app: hello-py-app
     spec:
-    containers:
-    - name: helloapp-py
-        image: <region-key>/<namespace>/project01/helloapp-py:v1
+      containers:
+      - name: hello-py-app
+        image: phx.ocir.io/idch4uyl2yza/ce-jcc/hello-py-app:v1
         imagePullPolicy: Always
         ports:
-        - name: python-app
-        containerPort: 5000
-        protocol: TCP
-    imagePullSecrets:
+        - containerPort: 5000
+          protocol: TCP
+        resources:
+          limits:
+            memory: 500Mi
+            cpu: 900m
+          requests:
+            memory: 200Mi
+            cpu: 500m
+      imagePullSecrets:
         - name: my-ocirsecret
 ```
 #### 1.6 Create the Deployment object for the helloapp-py
@@ -66,20 +73,23 @@ kubectl -n ns-test get deployments
 apiVersion: v1
 kind: Service
 metadata:
-name: helloapp-py-lb
-labels:
-    app: helloapp-py
-annotations:
+  name: hello-py-app-svc-lb
+  labels:
+    app: hello-py-app
+  annotations:
     oci.oraclecloud.com/load-balancer-type: "lb"
     service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 5000
-    selector:
-        app: helloapp-py
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      name: http
+  selector:
+    app: hello-py-app
 ```
 
 #### 1.9 Create the Service object for the svc-helloapp-py
