@@ -31,7 +31,7 @@ WORKDIR /
 COPY app .
 RUN pip3 install Flask
 EXPOSE 5000
-ENV NAME "Tech Beer Team"
+ENV NAME "Best Tech Team"
 CMD [ "python3", "app.py" ]
 ```
 
@@ -59,7 +59,7 @@ image_path: <region-key>/<namespace>/project01/helloapp-py:v1
 #### 1.8 Connect to the new OCIR repository
 ```
 docker login <region-key>
-username: <namespace>/oracleidentitycloudservice/<username>
+username: <namespace>/<username>
 pass (Auth-Token): <auth-token>
 ```
 
@@ -81,15 +81,15 @@ ssh opc@<instance-ip> -i sshkey
 
 #### 2.2 Login to the container image registry
 ```
-docker login <region-key>
-username: <namespace>/oracleidentitycloudservice/<username>
+sudo docker login <region-key>
+username: <namespace>/<username>
 pass (Auth-Token): <auth-token>
 ```
 
 #### 2.3 Pull image from an OCI instance (From terminal instance)
 ```
-docker pull <region-key>/<namespace>/project01/hello-py-app:v1
-docker images
+sudo docker pull <region-key>/<namespace>/project01/hello-py-app:v1
+sudo docker images
 ```
 
 #### 2.4 Run a new container from the pulled image

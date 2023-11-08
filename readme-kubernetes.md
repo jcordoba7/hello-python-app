@@ -16,7 +16,7 @@ kubectl create ns ns-test
 
 #### 1.3 Create secret inside OKE cluster in order to connet to container registry
 ```
-kubectl -n ns-test create secret docker-registry my-ocirsecret --docker-server=<region-key> --docker-username='<namespace>/<username>' --docker-password='<auth-token>' --docker-email='user-email'
+kubectl -n ns-test create secret docker-registry my-ocirsecret --docker-server=<region-key> --docker-username='<namespace>/<username>' --docker-password='<auth-token>' --docker-email='<user-email>'
 ```
 
 #### 1.4 Check for all secrets in the current namespace
