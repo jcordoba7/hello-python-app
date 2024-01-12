@@ -12,9 +12,6 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-      name: http
+  - port: 5000
   selector:
     app: hello-py-app
