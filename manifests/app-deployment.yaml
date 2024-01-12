@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: hello-py-app
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
@@ -20,5 +20,7 @@ spec:
         - name: hello-py-app
           containerPort: 5000
           protocol: TCP
+      nodeSelector:
+        name: pool1
       imagePullSecrets:
          - name: my-ocirsecret
