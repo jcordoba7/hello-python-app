@@ -65,12 +65,12 @@ pass (Auth-Token): <auth-token>
 
 #### 1.9 Change the image tag to create a copy image
 ```
-docker tag helloapp-py <region-key>/<namespace>/project01/hello-py-app:v1
+docker tag helloapp-py <region-key>/<namespace>/project01/helloapp-py:v1
 ```
 
 #### 1.10 Push that copy into the OCIR repository on OCI
 ```
-docker push <region-key>/<namespace>/project01/hello-py-app:v1
+docker push <region-key>/<namespace>/project01/helloapp-py:v1
 ```
 
 ## 2 Run the container on an OCI compute instance
@@ -88,13 +88,13 @@ pass (Auth-Token): <auth-token>
 
 #### 2.3 Pull image from an OCI instance (From terminal instance)
 ```
-sudo docker pull <region-key>/<namespace>/project01/hello-py-app:v1
+sudo docker pull <region-key>/<namespace>/project01/helloapp-py:v1
 sudo docker images
 ```
 
 #### 2.4 Run a new container from the pulled image
 ```
-sudo docker run --rm -p 80:5000 <region-key>/<namespace>/project01/hello-py-app:v1
+sudo docker run --rm -p 80:5000 <region-key>/<namespace>/project01/helloapp-py:v1
 ```
 
 #### 2.5 Test new container on OCI instance in web browser

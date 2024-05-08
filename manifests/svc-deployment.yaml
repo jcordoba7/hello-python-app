@@ -1,18 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-py-app-svc-lb
+  name: helloapp-py-svc-lb
   labels:
-    app: hello-py-app
+    app: helloapp-py
   annotations:
     oci.oraclecloud.com/load-balancer-type: "lb"
     service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
-    service.beta.kubernetes.io/oci-load-balancer-backend-protocol: "HTTP" #This line is required to integrate with WAF service
+    #service.beta.kubernetes.io/oci-load-balancer-backend-protocol: "HTTP" #This line is required to integrate with WAF service
 spec:
   type: LoadBalancer
   ports:
   - port: 5000
   selector:
-    app: hello-py-app
+    app: helloapp-py
+#spec:
+#  type: LoadBalancer
+#  ports:
+#    - protocol: TCP
+#      port: 80
+#      targetPort: 5000
+#      name: http
+#  selector:
+#    app: hello-py-app
