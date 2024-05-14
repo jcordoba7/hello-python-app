@@ -29,32 +29,28 @@ kubectl -n ns-test get secrets
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-py-app
+  name: helloapp-py
 spec:
   selector:
     matchLabels:
-      app: hello-py-app
-  replicas: 2
+      app: helloapp-py
+  replicas: 3
   template:
     metadata:
       labels:
-        app: hello-py-app
+        app: helloapp-py
     spec:
       containers:
-      - name: hello-py-app
-        image: phx.ocir.io/idch4uyl2yza/ce-jcc/hello-py-app:v1
+      - name: helloapp-py
+        image: phx.ocir.io/idi1o0a010nx/project01/helloapp-py:v1
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - name: helloapp-py
+          containerPort: 5000
           protocol: TCP
-        resources:
-          limits:
-            memory: 500Mi
-            cpu: 900m
-          requests:
-            memory: 200Mi
-            cpu: 500m
-       imagePullSecrets:
+#      nodeSelector:
+#        name: pool1
+      imagePullSecrets:
          - name: my-ocirsecret
 ```
 #### 1.6 Create the Deployment object for the helloapp-py
