@@ -31,8 +31,9 @@ WORKDIR /
 COPY app .
 RUN pip3 install Flask
 EXPOSE 5000
-ENV NAME "Best Tech Team"
+ENV NAME "Engineering Team"
 CMD [ "python3", "app.py" ]
+LABEL maintainer = "Jhonathan Cordoba"
 ```
 
 #### 1.4 Image creation
